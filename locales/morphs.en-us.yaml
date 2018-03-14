@@ -1,0 +1,6 @@
+- id: "morph.created.success"
+  translation: "Morph was successfully created."
+- id: "morph.updated.success"
+  translation: "Morph was successfully updated."
+- id: "morph.destroyed.success"
+  translation: "Morph was successfully destroyed."

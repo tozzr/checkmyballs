@@ -8,6 +8,7 @@ import (
 	"github.com/unrolled/secure"
 
 	"cmb/models"
+
 	"github.com/gobuffalo/buffalo/middleware/csrf"
 	"github.com/gobuffalo/buffalo/middleware/i18n"
 	"github.com/gobuffalo/packr"
@@ -56,6 +57,8 @@ func App() *buffalo.App {
 
 		app.GET("/", HomeHandler)
 
+		app.Resource("/users", UsersResource{})
+		app.Resource("/morphs", MorphsResource{})
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

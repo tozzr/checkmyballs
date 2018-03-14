@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1>Edit Morph</h1>
+</div>
+
+<%= form_for(morph, {action: morphPath({ morph_id: morph.ID }), method: "PUT"}) { %>
+  <%= partial("morphs/form.html") %>
+  <a href="<%= morphPath({ morph_id: morph.ID }) %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+<% } %>

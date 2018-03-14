@@ -1,0 +1,6 @@
+- id: "help.created.success"
+  translation: "Help was successfully created."
+- id: "help.updated.success"
+  translation: "Help was successfully updated."
+- id: "help.destroyed.success"
+  translation: "Help was successfully destroyed."

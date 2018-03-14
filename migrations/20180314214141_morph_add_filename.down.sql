@@ -1,0 +1,1 @@
+ALTER TABLE morphs DROP COLUMN filename;

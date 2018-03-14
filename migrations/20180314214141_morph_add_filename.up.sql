@@ -1,0 +1,1 @@
+ALTER TABLE morphs ADD COLUMN filename VARCHAR(255);
