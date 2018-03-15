@@ -17,7 +17,9 @@
       <tr>
         <td>
           <%= if (morph.Filename) { %>
-            <img src="/uploads/<%= morph.Filename %>" alt="morph image here" width="75" />
+            <a href="<%= morphPath({ morph_id: morph.ID }) %>">
+              <img src="/uploads/<%= morph.Filename %>" alt="morph image here" width="75" />
+            </a>
           <% } %>
         </td>
         <td><%= morph.Name %></td>
