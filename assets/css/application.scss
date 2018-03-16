@@ -1,3 +1,28 @@
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap-sprockets.scss";
 @import "~bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "~font-awesome/css/font-awesome.css";
+
+.morph-container {
+    width: 100%;
+    display: flex;
+    flex-direction: columns;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.morph {
+    width: 250px;
+    height: 200px;
+    border: thin solid #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1em;
+}
+.morph:hover {
+    border: thin solid #ccc;
+    cursor: pointer;
+}
+.morph:hover .morph-name {
+    font-weight: bold;
+}

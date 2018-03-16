@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"cmb/actions"
+	"github.com/tozzr/checkmyballs/actions"
 )
 
 func main() {

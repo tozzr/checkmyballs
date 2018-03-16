@@ -1,40 +1,29 @@
-<div class="page-header">
+<div class="page-header" style="display: flex; justify-content: space-between;">
+  <ul class="list-unstyled list-inline" style="margin-top: 1.6em;">
+    <li><a href="/" class="btn">Back to home</a></li>
+  </ul>
   <h1>Morphs</h1>
+  <ul class="list-unstyled list-inline" style="margin-top: 1.6em;">
+    <li>
+      <a href="<%= newMorphsPath() %>" class="btn btn-primary">Create New Morph</a>
+    </li>
+  </ul>
 </div>
-<ul class="list-unstyled list-inline">
-  <li><a href="/" class="btn btn-info">Back to home</a></li>
-  <li><a href="<%= newMorphsPath() %>" class="btn btn-primary">Create New Morph</a></li>
-</ul>
 
-<table class="table table-striped">
-  <thead>
-    <th>&nbsp;</th>
-    <th>&nbsp;</th>
-    <th>&nbsp;</th>
-  </thead>
-  <tbody>
-    <%= for (morph) in morphs { %>
-      <tr>
-        <td>
-          <%= if (morph.Filename) { %>
-            <a href="<%= morphPath({ morph_id: morph.ID }) %>">
-              <img src="/uploads/<%= morph.Filename %>" alt="morph image here" width="75" />
-            </a>
-          <% } %>
-        </td>
-        <td><%= morph.Name %></td>
-        <td>
-          <div class="pull-right">
-            <a href="<%= morphPath({ morph_id: morph.ID }) %>" class="btn btn-info">View</a>
-            <a href="<%= editMorphPath({ morph_id: morph.ID }) %>" class="btn btn-warning">Edit</a>
-            <a href="<%= morphPath({ morph_id: morph.ID }) %>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
-          </div>
-        </td>
-      </tr>
-    <% } %>
-  </tbody>
-</table>
+<div class="morph-container">
+  <%= for (morph) in morphs { %>
+    <div class="morph" onclick="location.href='<%= morphPath({ morph_id: morph.ID }) %>';">
+      <%= if (morph.Filename) { %>
+        <img src="/uploads/<%= morph.Filename %>" alt="morph image here" width="150"/>
+      <% } %>
+      <div class="morph-name">
+        <%= morph.Name %>
+      </div>  
+    </div>
+  <% } %>
+</div>
 
 <div class="text-center">
+  <strong><%= pagination.TotalEntriesSize %> entries</strong>
   <%= paginator(pagination) %>
 </div>

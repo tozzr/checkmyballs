@@ -1,7 +1,7 @@
 package actions
 
 import (
-	"cmb/models"
+	"github.com/tozzr/checkmyballs/models"
 
 	"github.com/gobuffalo/buffalo"
 	"github.com/gobuffalo/pop"
@@ -94,16 +94,17 @@ func (v MorphsResource) Create(c buffalo.Context) error {
 		return errors.WithStack(errors.New("no transaction found"))
 	}
 
-	// Validate the data from the html form
-	verrs, err := tx.ValidateAndCreate(morph)
-	if err != nil {
-		return errors.WithStack(err)
-	}
 	f, err := c.File("someFile")
 	if err != nil {
 		return errors.WithStack(err)
 	} else {
 		morph.Filename = f.Filename
+	}
+
+	// Validate the data from the html form
+	verrs, err := tx.ValidateAndCreate(morph)
+	if err != nil {
+		return errors.WithStack(err)
 	}
 
 	if verrs.HasAny() {
@@ -161,12 +162,14 @@ func (v MorphsResource) Update(c buffalo.Context) error {
 	if err := c.Bind(morph); err != nil {
 		return errors.WithStack(err)
 	}
+
 	f, err := c.File("someFile")
 	if err != nil {
 		return errors.WithStack(err)
 	} else {
 		morph.Filename = f.Filename
 	}
+
 	verrs, err := tx.ValidateAndUpdate(morph)
 	if err != nil {
 		return errors.WithStack(err)

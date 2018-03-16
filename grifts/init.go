@@ -1,8 +1,8 @@
 package grifts
 
 import (
-	"cmb/actions"
 	"github.com/gobuffalo/buffalo"
+	"github.com/tozzr/checkmyballs/actions"
 )
 
 func init() {

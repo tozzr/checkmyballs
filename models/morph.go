@@ -60,29 +60,23 @@ func (m *Morph) ValidateUpdate(tx *pop.Connection) (*validate.Errors, error) {
 }
 
 func (m *Morph) AfterCreate(tx *pop.Connection) error {
-	dir := filepath.Join(".", "/public/uploads")
-	if err := os.MkdirAll(dir, 0755); err != nil {
-		return errors.WithStack(err)
-	}
-	f, err := os.Create(filepath.Join(dir, m.File.Filename))
-	if err != nil {
-		return errors.WithStack(err)
-	}
-	defer f.Close()
-	_, err = io.Copy(f, m.File)
-	return err
+	return moveFile(m.File, tx)
 }
 
 func (m *Morph) AfterUpdate(tx *pop.Connection) error {
+	return moveFile(m.File, tx)
+}
+
+func moveFile(file binding.File, tx *pop.Connection) error {
 	dir := filepath.Join(".", "/public/uploads")
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return errors.WithStack(err)
 	}
-	f, err := os.Create(filepath.Join(dir, m.File.Filename))
+	f, err := os.Create(filepath.Join(dir, file.Filename))
 	if err != nil {
 		return errors.WithStack(err)
 	}
 	defer f.Close()
-	_, err = io.Copy(f, m.File)
+	_, err = io.Copy(f, file)
 	return err
 }
