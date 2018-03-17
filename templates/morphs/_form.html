@@ -1,3 +1,6 @@
-<%= f.InputTag("Name", {rows: 10}) %>
+<%= f.InputTag("Name", {}) %>
 <%= f.FileTag("File") %>
+<%= f.CheckboxTag("Dominant", {unchecked: false}) %>
+<%= f.SelectTag("Rating", {options: [1,2,3,4,5]}) %>
+<%= f.InputTag("Filename", {type:"hidden"}) %>
 <button class="btn btn-success" role="submit">Save</button>

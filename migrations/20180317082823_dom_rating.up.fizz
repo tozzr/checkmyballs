@@ -1,0 +1,2 @@
+add_column("morphs", "dominant", "bool", {})
+add_column("morphs", "rating", "integer", {})

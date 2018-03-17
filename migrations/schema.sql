@@ -28,6 +28,8 @@ CREATE TABLE `morphs` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `filename` varchar(255) DEFAULT NULL,
+  `dominant` tinyint(1) NOT NULL,
+  `rating` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -71,4 +73,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-14 22:45:31
+-- Dump completed on 2018-03-17  9:30:53

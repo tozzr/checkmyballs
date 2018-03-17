@@ -2,7 +2,14 @@
   <h1>Edit Morph</h1>
 </div>
 
-<%= form_for(morph, {action: morphPath({ morph_id: morph.ID }), method: "PUT"}) { %>
-  <%= partial("morphs/form.html") %>
-  <a href="<%= morphPath({ morph_id: morph.ID }) %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
-<% } %>
+<div style="display: flex; justify-content: space-between;">
+
+  <%= form_for(morph, {action: morphPath({ morph_id: morph.ID }), method: "PUT"}) { %>
+    <%= partial("morphs/form.html") %>
+    <a href="<%= morphPath({ morph_id: morph.ID }) %>" class="btn btn-warning" data-confirm="Are you sure?">Cancel</a>
+  <% } %>
+
+  <%= if (morph.Filename) { %>
+    <img src="/uploads/<%= morph.Filename %>" alt="morph image here" width="400" height="300" />
+  <% } %>
+</div>

@@ -22,6 +22,8 @@ type Morph struct {
 	Name      string       `json:"name" db:"name" order_by:"name asc"`
 	Filename  string       `json:"filename" db:"filename"`
 	File      binding.File `db:"-" form:"someFile"`
+	Dominant  bool         `json:"dominant" db:"dominant"`
+	Rating    int          `json:"rating" db:"rating"`
 }
 
 // String is not required by pop and may be deleted
@@ -68,6 +70,9 @@ func (m *Morph) AfterUpdate(tx *pop.Connection) error {
 }
 
 func moveFile(file binding.File, tx *pop.Connection) error {
+	if file.Filename == "" {
+		return nil
+	}
 	dir := filepath.Join(".", "/public/uploads")
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return errors.WithStack(err)

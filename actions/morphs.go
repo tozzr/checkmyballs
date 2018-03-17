@@ -40,8 +40,15 @@ func (v MorphsResource) List(c buffalo.Context) error {
 	// Default values are "page=1" and "per_page=20".
 	q := tx.PaginateFromParams(c.Params())
 
+	order_by := c.Params().Get("order_by")
+	if order_by == "rating" {
+		order_by = "rating desc"
+	} else {
+		order_by = "name asc"
+	}
+
 	// Retrieve all Morphs from the DB
-	if err := q.Order("name asc").All(morphs); err != nil {
+	if err := q.Order(order_by).All(morphs); err != nil {
 		return errors.WithStack(err)
 	}
 
@@ -97,7 +104,7 @@ func (v MorphsResource) Create(c buffalo.Context) error {
 	f, err := c.File("someFile")
 	if err != nil {
 		return errors.WithStack(err)
-	} else {
+	} else if f.Filename != "" {
 		morph.Filename = f.Filename
 	}
 
@@ -166,7 +173,7 @@ func (v MorphsResource) Update(c buffalo.Context) error {
 	f, err := c.File("someFile")
 	if err != nil {
 		return errors.WithStack(err)
-	} else {
+	} else if f.Filename != "" {
 		morph.Filename = f.Filename
 	}
 

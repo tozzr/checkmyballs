@@ -5,7 +5,13 @@
   <h1>Morphs</h1>
   <ul class="list-unstyled list-inline" style="margin-top: 1.6em;">
     <li>
-      <a href="<%= newMorphsPath() %>" class="btn btn-primary">Create New Morph</a>
+      <a href="<%= newMorphsPath() %>" class="btn fa fa-plus"></a>
+    </li>
+    <li>
+      <a href="<%= morphsPath() %>?order_by=name" class="btn fa fa-sort-alpha-asc"></a>
+    </li>
+    <li>
+      <a href="<%= morphsPath() %>?order_by=rating" class="btn fa fa-star"></a>
     </li>
   </ul>
 </div>
@@ -19,6 +25,7 @@
       <div class="morph-name">
         <%= morph.Name %>
       </div>  
+      <div><%= rating(morph.Rating) %></div>
     </div>
   <% } %>
 </div>
