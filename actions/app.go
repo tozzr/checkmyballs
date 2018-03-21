@@ -12,6 +12,8 @@ import (
 	"github.com/gobuffalo/buffalo/middleware/csrf"
 	"github.com/gobuffalo/buffalo/middleware/i18n"
 	"github.com/gobuffalo/packr"
+
+	"github.com/markbates/goth/gothic"
 )
 
 // ENV is used to help switch settings based on where the
@@ -47,6 +49,7 @@ func App() *buffalo.App {
 		//  c.Value("tx").(*pop.PopTransaction)
 		// Remove to disable this.
 		app.Use(middleware.PopTransaction(models.DB))
+		app.Use(SetCurrentUser)
 
 		// Setup and use translations:
 		var err error
@@ -54,11 +57,21 @@ func App() *buffalo.App {
 			app.Stop(err)
 		}
 		app.Use(T.Middleware())
+		app.Use(Authorize)
+		app.Middleware.Skip(Authorize, HomeHandler)
 
 		app.GET("/", HomeHandler)
+		app.GET("/routes", RouteHandler)
 
-		app.Resource("/users", UsersResource{})
 		app.Resource("/morphs", MorphsResource{})
+
+		auth := app.Group("/auth")
+		bah := buffalo.WrapHandlerFunc(gothic.BeginAuthHandler)
+		auth.GET("/{provider}", bah)
+		auth.GET("/{provider}/callback", AuthCallback)
+		auth.Middleware.Skip(Authorize, bah, AuthCallback)
+		auth.DELETE("", AuthDestroy)
+
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

@@ -41,10 +41,10 @@ func (v MorphsResource) List(c buffalo.Context) error {
 	q := tx.PaginateFromParams(c.Params())
 
 	order_by := c.Params().Get("order_by")
-	if order_by == "rating" {
-		order_by = "rating desc"
-	} else {
+	if order_by == "name" {
 		order_by = "name asc"
+	} else {
+		order_by = "rating desc"
 	}
 
 	// Retrieve all Morphs from the DB

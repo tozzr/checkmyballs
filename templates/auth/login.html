@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="subtitle">
+      <div class="container">
+        <h3>Login</h3>
+      </div>
+    </div>
+    <div class="table-responsive">
+        <%= form({action: "/login", method: "POST"}) { %>
+          <%= f.InputTag({name:"Username"}) %>
+          <%= f.InputTag({name:"Password"}) %>
+          <button>login</button>
+        <% } %>
+    </div>
+  </div>
+</div>
+<div class="foot"> <span> Powered by <a href="http://gobuffalo.io/">gobuffalo.io</a></span> </div>

@@ -4,8 +4,15 @@
   </ul>
   <h1><%= morph.Name %></h1>
   <ul class="list-unstyled list-inline" style="margin-top: 1.6em;">
-    <li><a href="<%= editMorphPath({ morph_id: morph.ID })%>" class="btn btn-warning">Edit</a></li>
-    <li><a href="<%= morphPath({ morph_id: morph.ID })%>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+    <li>
+        <a href="<%= editMorphPath({ morph_id: morph.ID })%>" class="btn" title="edit">
+          <i class="fa fa-edit"></i>
+        </a>
+    </li>
+    <li>
+        <a href="<%= morphPath({ morph_id: morph.ID })%>" data-method="DELETE" data-confirm="Are you sure?" class="btn">
+          <i class="fa fa-remove"></i>
+        </a>
   </ul>
 </div>
 
