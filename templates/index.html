@@ -1,9 +1,43 @@
-<%= if (current_user) { %>
-  hello <%= current_user.Name %>
-  <a href="/auth" data-method="DELETE"><i class="fa fa-sign-out"></i> sign out</a>
-  <br><br>
+<style>
+.container {
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-container {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
 
-  <a href="/morphs">morphs</a>
-<% } else { %>
-  <a href="/auth/github"><i class="fa fa-github fa-2x"></i> log in with github</a>
-<% } %>
+</style>
+<div class="container">
+  <div class="login-header">
+    <img src="http://www.worldofballpythons.com/files/morphs/ghi-mojave/009.jpg" width="400" height="300" />
+    <h1>check my balls</h1>
+  </div>
+  <div class="login-container">
+    <%= if (current_user) { %>
+      hello <%= current_user.Name %>
+      <a href="/auth" data-method="DELETE"><i class="fa fa-sign-out"></i> sign out</a>
+      <br><br>
+      
+      <a href="/morphs">morphs</a>
+    <% } else { %>
+        <a href="/auth/github"><i class="fa fa-github fa-2x fa-fw"></i> log in with github</a>
+        <a href="/auth/facebook"><i class="fa fa-facebook fa-2x fa-fw"></i> log in with facebook</a>
+        <a href="/auth/twitter"><i class="fa fa-twitter fa-2x fa-fw"></i> log in with twitter</a>
+    <% } %>
+  </div>
+</div>
