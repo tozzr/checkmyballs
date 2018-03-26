@@ -1,8 +1,6 @@
 package actions
 
 import (
-	"html/template"
-
 	"github.com/gobuffalo/buffalo/render"
 	"github.com/gobuffalo/packr"
 )
@@ -24,17 +22,8 @@ func init() {
 			// uncomment for non-Bootstrap form helpers:
 			// "form":     plush.FormHelper,
 			// "form_for": plush.FormForHelper,
-			"rating": func(r int) template.HTML {
-				rating := ""
-				for i := 0; i < 5; i++ {
-					a := "-o"
-					if i < r {
-						a = ""
-					}
-					rating += "<i class='fa fa-star" + a + "'></i>"
-				}
-				return template.HTML(rating)
-			},
+			"rating":      RatingRenderHelper,
+			"activeClass": ActiceClassRenderHelper,
 		},
 	})
 }

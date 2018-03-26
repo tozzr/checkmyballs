@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>Animal#Show</h1>
+</div>
+
+<ul class="list-unstyled list-inline">
+  <li><a href="<%= animalsPath() %>" class="btn btn-info">Back to all Animals</a></li>
+  <li><a href="<%= editAnimalPath({ animal_id: animal.ID })%>" class="btn btn-warning">Edit</a></li>
+  <li><a href="<%= animalPath({ animal_id: animal.ID })%>" data-method="DELETE" data-confirm="Are you sure?" class="btn btn-danger">Destroy</a>
+</ul>
+
+<p>
+  <strong>Name</strong>: <%= animal.Name %>
+</p>
+<p>
+  <strong>Sex</strong>: <%= animal.Sex %>
+</p>
+<p>
+  <strong>Weight</strong>: <%= animal.Weight %>
+</p>
+<p>
+  <strong>Birthdate</strong>: <%= animal.Birthdate %>
+</p>

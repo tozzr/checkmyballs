@@ -50,6 +50,7 @@ func App() *buffalo.App {
 		// Remove to disable this.
 		app.Use(middleware.PopTransaction(models.DB))
 		app.Use(SetCurrentUser)
+		app.Use(SetCurrentUrl)
 
 		// Setup and use translations:
 		var err error
@@ -72,6 +73,7 @@ func App() *buffalo.App {
 		auth.Middleware.Skip(Authorize, bah, AuthCallback)
 		auth.DELETE("", AuthDestroy)
 
+		app.Resource("/animals", AnimalsResource{})
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

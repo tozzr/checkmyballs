@@ -2,11 +2,12 @@ package models
 
 import (
 	"encoding/json"
+	"time"
+
 	"github.com/gobuffalo/pop"
 	"github.com/gobuffalo/uuid"
 	"github.com/gobuffalo/validate"
 	"github.com/gobuffalo/validate/validators"
-	"time"
 )
 
 type User struct {
@@ -16,6 +17,7 @@ type User struct {
 	Name       string    `json:"name" db:"name"`
 	Provider   string    `json:"provider" db:"provider"`
 	ProviderID string    `json:"provider_id" db:"provider_id"`
+	Animals    Animals   `has_many:"animals"`
 }
 
 // String is not required by pop and may be deleted
