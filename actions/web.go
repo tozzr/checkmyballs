@@ -2,6 +2,7 @@ package actions
 
 import (
 	"html/template"
+	"strings"
 
 	"github.com/gobuffalo/buffalo"
 )
@@ -26,7 +27,7 @@ func RatingRenderHelper(r int) template.HTML {
 }
 
 func ActiceClassRenderHelper(path string, url string) string {
-	if path == url {
+	if strings.HasPrefix(url, path) {
 		return "active"
 	}
 	return ""
